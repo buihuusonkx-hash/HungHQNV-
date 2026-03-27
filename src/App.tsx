@@ -621,13 +621,13 @@ export default function App() {
                      if (data.length === 0) themChuongMoi();
                      else themNoiDung(data.length - 1);
                    }} className="px-5 py-2.5 bg-indigo-500 text-white rounded-lg font-bold text-xs flex items-center hover:bg-indigo-600 transition-all shadow-md">
-                     <Plus className="w-3.5 h-3.5 mr-2" /> Th\u00eam B\u00e0i M\u1edbi
+                     <Plus className="w-3.5 h-3.5 mr-2" /> Thêm Bài Mới
                    </button>
                    <button onClick={tuDongPhanBo} className="px-5 py-2.5 bg-emerald-500 text-white rounded-lg font-bold text-xs flex items-center hover:bg-emerald-600 transition-all shadow-md">
-                     <FileText className="w-3.5 h-3.5 mr-2" /> T\u1ef1 \u0110\u1ed9ng Ph\u00e2n B\u1ed5
+                     <FileText className="w-3.5 h-3.5 mr-2" /> Tự Động Phân Bổ
                    </button>
                    <button onClick={exportToWord} className="px-5 py-2.5 bg-sky-600 text-white rounded-lg font-bold text-xs flex items-center hover:bg-sky-700 transition-all shadow-md">
-                     <Download className="w-3.5 h-3.5 mr-2" /> Xu\u1ea5t File Word
+                     <Download className="w-3.5 h-3.5 mr-2" /> Xuất File Word
                    </button>
                  </div>
                </div>
@@ -1720,7 +1720,7 @@ function TabTaoDeTuDong({ data, countQuestions }: { data: any[], countQuestions:
                 {warnMsg && (
                   <div className="mb-4 px-4 py-3 bg-amber-50 border border-amber-200 rounded-2xl flex items-start gap-2">
                     <AlertCircle className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
-                    <p className="text-xs font-bold text-amber-700">{warnMsg}. Vui l\u00f2ng ki\u1ec3m tra l\u1ea1i ma tr\u1eadn t\u1ea1i tab <strong>Nh\u1eadp li\u1ec7u</strong>.</p>
+                    <p className="text-xs font-bold text-amber-700">{warnMsg}. Vui lòng kiểm tra lại ma trận tại tab <strong>Nhập liệu</strong>.</p>
                   </div>
                 )}
                 {/* Stats */}
@@ -1728,27 +1728,27 @@ function TabTaoDeTuDong({ data, countQuestions }: { data: any[], countQuestions:
                   <div className={`rounded-2xl p-4 flex items-center gap-4 border ${nlcQuestions.length < QUOTA.nlc ? 'bg-amber-50 border-amber-200' : 'bg-emerald-50 border-emerald-100'}`}>
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${nlcQuestions.length < QUOTA.nlc ? 'bg-amber-500' : 'bg-emerald-500'}`}><span className="text-white font-black text-sm">I</span></div>
                     <div>
-                      <p className={`text-[10px] font-black uppercase tracking-wider ${nlcQuestions.length < QUOTA.nlc ? 'text-amber-700' : 'text-emerald-700'}`}>Nhi\u1ec1u l\u1ef1a ch\u1ecdn</p>
+                      <p className={`text-[10px] font-black uppercase tracking-wider ${nlcQuestions.length < QUOTA.nlc ? 'text-amber-700' : 'text-emerald-700'}`}>Nhiều lựa chọn</p>
                       <p className="text-2xl font-black text-slate-900">
-                        {nlcQuestions.length}<span className="text-sm text-slate-400 font-bold">/{QUOTA.nlc}</span> <span className="text-xs text-slate-400 font-medium">c\u00e2u</span>
+                        {nlcQuestions.length}<span className="text-sm text-slate-400 font-bold">/{QUOTA.nlc}</span> <span className="text-xs text-slate-400 font-medium">câu</span>
                       </p>
                     </div>
                   </div>
                   <div className={`rounded-2xl p-4 flex items-center gap-4 border ${dsQuestions.length < QUOTA.ds ? 'bg-amber-50 border-amber-200' : 'bg-amber-50 border-amber-100'}`}>
                     <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center"><span className="text-white font-black text-sm">II</span></div>
                     <div>
-                      <p className="text-[10px] font-black text-amber-700 uppercase tracking-wider">\u0110\u00fang / Sai</p>
+                      <p className="text-[10px] font-black text-amber-700 uppercase tracking-wider">Đúng / Sai</p>
                       <p className="text-2xl font-black text-slate-900">
-                        {dsQuestions.length}<span className="text-sm text-slate-400 font-bold">/{QUOTA.ds}</span> <span className="text-xs text-slate-400 font-medium">c\u00e2u</span>
+                        {dsQuestions.length}<span className="text-sm text-slate-400 font-bold">/{QUOTA.ds}</span> <span className="text-xs text-slate-400 font-medium">câu</span>
                       </p>
                     </div>
                   </div>
                   <div className={`rounded-2xl p-4 flex items-center gap-4 border ${tlnQuestions.length < QUOTA.tln ? 'bg-amber-50 border-amber-200' : 'bg-rose-50 border-rose-100'}`}>
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${tlnQuestions.length < QUOTA.tln ? 'bg-amber-500' : 'bg-rose-500'}`}><span className="text-white font-black text-sm">III</span></div>
                     <div>
-                      <p className={`text-[10px] font-black uppercase tracking-wider ${tlnQuestions.length < QUOTA.tln ? 'text-amber-700' : 'text-rose-700'}`}>Tr\u1ea3 l\u1eddi ng\u1eafn</p>
+                      <p className={`text-[10px] font-black uppercase tracking-wider ${tlnQuestions.length < QUOTA.tln ? 'text-amber-700' : 'text-rose-700'}`}>Trả lời ngắn</p>
                       <p className="text-2xl font-black text-slate-900">
-                        {tlnQuestions.length}<span className="text-sm text-slate-400 font-bold">/{QUOTA.tln}</span> <span className="text-xs text-slate-400 font-medium">c\u00e2u</span>
+                        {tlnQuestions.length}<span className="text-sm text-slate-400 font-bold">/{QUOTA.tln}</span> <span className="text-xs text-slate-400 font-medium">câu</span>
                       </p>
                     </div>
                   </div>
@@ -1758,7 +1758,7 @@ function TabTaoDeTuDong({ data, countQuestions }: { data: any[], countQuestions:
                     onClick={handleGenerate}
                     className="px-6 py-2.5 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl font-bold text-xs hover:border-indigo-400 hover:text-indigo-600 transition-all flex items-center"
                   >
-                    <RefreshCw className="w-3.5 h-3.5 mr-2" /> Sinh l\u1ea1i \u0111\u1ec1 m\u1edbi
+                    <RefreshCw className="w-3.5 h-3.5 mr-2" /> Sinh lại đề mới
                   </button>
                 </div>
               </div>
@@ -1768,15 +1768,231 @@ function TabTaoDeTuDong({ data, countQuestions }: { data: any[], countQuestions:
 
       </div>
 
-      {/* \u0110\u1ec1 thi */}
+      {/* ĐỀ THI - Printed exam paper style */}
       {isGenerated && cauHois.length > 0 && (
-        <>
-          {/* Banner th\u00f4ng tin \u0111\u1ec1 */}
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm px-8 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+        <div
+          style={{ fontFamily: "'Times New Roman', Times, serif", fontSize: '13pt', lineHeight: '1.7', background: '#fff', color: '#000' }}
+          className="rounded-2xl border border-slate-200 shadow-lg overflow-hidden max-w-[850px] mx-auto"
+        >
+          <div style={{ padding: '40px 50px' }}>
+            {/* === HEADER === */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px' }}>
+              <div style={{ textAlign: 'center', flex: 1 }}>
+                <p style={{ fontSize: '12pt' }}>{soGDDT}</p>
+                <p style={{ fontSize: '12pt', fontWeight: 'bold', textDecoration: 'underline' }}>{tenTruong}</p>
+              </div>
+              <div style={{ textAlign: 'center', flex: 1 }}>
+                <p style={{ fontSize: '12pt', fontWeight: 'bold' }}>{tenKyThi}</p>
+                <p style={{ fontSize: '12pt', fontWeight: 'bold' }}>NĂM HỌC {namHoc}</p>
+              </div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ fontWeight: 'bold', fontSize: '12pt' }}>MÔN TOÁN - Lớp 12</p>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11pt', marginBottom: '4px' }}>
+              <p style={{ fontStyle: 'italic' }}>(Đề thi có {Math.ceil((nlcQuestions.length + dsQuestions.length + tlnQuestions.length) / 8)} trang)</p>
+              <div style={{ textAlign: 'center' }}>
+                <p>Thời gian làm bài: {thoiGian} phút</p>
+                <p style={{ fontStyle: 'italic', fontSize: '10pt' }}>(không kể thời gian phát đề)</p>
+              </div>
+            </div>
+            <div style={{ textAlign: 'center', margin: '14px 0' }}>
+              <span style={{ border: '2px solid #000', padding: '5px 22px', fontWeight: 'bold', fontSize: '14pt' }}>Mã đề {maDe}</span>
+            </div>
+            <p style={{ marginBottom: '20px', fontSize: '12pt' }}>
+              Họ và tên học sinh: .......................................................... Số báo danh: .......................
+            </p>
+
+            {/* === PHẦN I: TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN === */}
+            {nlcQuestions.length > 0 && (
+              <div style={{ marginBottom: '20px' }}>
+                <p style={{ fontWeight: 'bold', marginBottom: '6px' }}>
+                  PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.{' '}
+                  <span style={{ fontStyle: 'italic', fontWeight: 'normal' }}>
+                    Thí sinh trả lời từ câu 1 đến câu {nlcQuestions.length}. Mỗi câu hỏi thí sinh chỉ chọn một phương án.
+                  </span>
+                </p>
+                {nlcQuestions.map((q, i) => {
+                  const raw = q.noiDungCauHoi.replace(/^\[.*?\]\s*–?\s*/, '').trim();
+                  const splitParts = raw.split(/\n?[A-D]\.\s*/);
+                  const deDan = splitParts[0].trim();
+                  const optMatches = [...raw.matchAll(/([A-D])\.\s*([^\n]*)/g)];
+                  const options = optMatches.length > 0
+                    ? optMatches.map(m => ({ label: m[1], text: m[2].trim() }))
+                    : ['A', 'B', 'C', 'D'].map((lbl, k) => ({ label: lbl, text: splitParts[k + 1]?.trim() || '' }));
+                  return (
+                    <div key={q.id} style={{ marginBottom: '10px' }}>
+                      <p><b>Câu {i + 1}.</b> {deDan}</p>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingLeft: '28px', gap: '1px 0' }}>
+                        {options.map(opt => (
+                          <p key={opt.label}><b>{opt.label}.</b> {opt.text}</p>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* === PHẦN II: TRẮC NGHIỆM ĐÚNG/SAI === */}
+            {dsQuestions.length > 0 && (
+              <div style={{ marginBottom: '20px' }}>
+                <p style={{ fontWeight: 'bold', marginBottom: '6px' }}>
+                  PHẦN II. Câu trắc nghiệm đúng sai.{' '}
+                  <span style={{ fontStyle: 'italic', fontWeight: 'normal' }}>
+                    (Thí sinh trả lời từ câu 1 đến câu {dsQuestions.length}. Trong mỗi ý a), b), c), d) ở mỗi câu, thí sinh chọn đúng hoặc sai.)
+                  </span>
+                </p>
+                {dsQuestions.map((q, i) => {
+                  const labelMap = ['a', 'b', 'c', 'd'];
+                  const raw = q.noiDungCauHoi;
+                  const parts = raw.split(/\n(?=[a-d]\))/i);
+                  const danDe = parts[0].replace(/^\[.*?\]\s*–?\s*/, '').trim();
+                  const yItems = parts.slice(1);
+                  const finalYs = labelMap.map((_, k) => {
+                    if (yItems[k]) return yItems[k].replace(/^[a-d]\)\s*/i, '').trim();
+                    return '';
+                  });
+                  return (
+                    <div key={q.id} style={{ marginBottom: '10px' }}>
+                      <p><b>Câu {i + 1}:</b> {danDe}</p>
+                      <div style={{ paddingLeft: '28px' }}>
+                        {finalYs.map((y, k) => (
+                          <p key={k}>{labelMap[k]}) {y}</p>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* === PHẦN III: TRẢ LỜI NGẮN === */}
+            {tlnQuestions.length > 0 && (
+              <div style={{ marginBottom: '20px' }}>
+                <p style={{ fontWeight: 'bold', marginBottom: '6px' }}>
+                  PHẦN III. Câu hỏi trắc nghiệm trả lời ngắn.{' '}
+                  <span style={{ fontStyle: 'italic', fontWeight: 'normal' }}>
+                    Thí sinh trả lời từ câu 1 đến câu {tlnQuestions.length}
+                  </span>
+                </p>
+                {tlnQuestions.map((q, i) => {
+                  const noiDungClean = q.noiDungCauHoi.replace(/^\[.*?\]\s*–?\s*/, '').trim();
+                  return (
+                    <div key={q.id} style={{ marginBottom: '10px' }}>
+                      <p><b>Câu {i + 1}:</b></p>
+                      <p style={{ paddingLeft: '28px' }}>{noiDungClean}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* === HẾT === */}
+            <div style={{ textAlign: 'center', margin: '30px 0', fontSize: '13pt' }}>
+              <p>--------------------<b>HẾT</b>--------------------</p>
+            </div>
+
+            {/* === ĐÁP ÁN VÀ THANG ĐIỂM CHẤM === */}
+            <div style={{ borderTop: '2px solid #000', paddingTop: '16px' }}>
+              <p style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '14pt', marginBottom: '16px' }}>ĐÁP ÁN VÀ THANG ĐIỂM CHẤM</p>
+
+              {/* PHẦN I */}
+              {nlcQuestions.length > 0 && (
+                <div style={{ marginBottom: '16px' }}>
+                  <p style={{ fontWeight: 'bold' }}>PHẦN I</p>
+                  <p style={{ fontStyle: 'italic', marginBottom: '6px', fontSize: '12pt' }}>(Mỗi câu trả lời đúng học sinh được <b>0,25 điểm</b>)</p>
+                  <table style={{ borderCollapse: 'collapse', fontSize: '11pt' }}>
+                    <tbody>
+                      <tr>
+                        <td style={{ border: '1px solid #000', padding: '3px 8px', fontWeight: 'bold', textAlign: 'center' }}>Câu</td>
+                        {nlcQuestions.map((_, i) => (
+                          <td key={i} style={{ border: '1px solid #000', padding: '3px 6px', textAlign: 'center', fontWeight: 'bold', fontSize: '10pt' }}>Câu {i + 1}</td>
+                        ))}
+                      </tr>
+                      <tr>
+                        <td style={{ border: '1px solid #000', padding: '3px 8px', fontWeight: 'bold', textAlign: 'center' }}>Chọn</td>
+                        {nlcQuestions.map((q, i) => (
+                          <td key={i} style={{ border: '1px solid #000', padding: '3px 6px', textAlign: 'center', fontWeight: 'bold' }}>{q.dapAn}</td>
+                        ))}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {/* PHẦN II */}
+              {dsQuestions.length > 0 && (
+                <div style={{ marginBottom: '16px' }}>
+                  <p style={{ fontWeight: 'bold' }}>PHẦN II</p>
+                  <p>Điểm tối đa của 01 câu hỏi là <b>1 điểm</b>.</p>
+                  <p>- Thí sinh chỉ lựa chọn chính xác 01 ý trong 1 câu hỏi được <b>0,1 điểm</b>.</p>
+                  <p>- Thí sinh chỉ lựa chọn chính xác 02 ý trong 1 câu hỏi được <b>0,25 điểm</b>.</p>
+                  <p>- Thí sinh chỉ lựa chọn chính xác 03 ý trong 1 câu hỏi được <b>0,5 điểm</b>.</p>
+                  <p>- Thí sinh chỉ lựa chọn chính xác 04 ý trong 1 câu hỏi được <b>1 điểm</b>.</p>
+                  <table style={{ borderCollapse: 'collapse', marginTop: '8px', fontSize: '11pt' }}>
+                    <tbody>
+                      <tr>
+                        <td style={{ border: '1px solid #000', padding: '3px 12px', fontWeight: 'bold', textAlign: 'center' }}></td>
+                        {dsQuestions.map((_, i) => (
+                          <td key={i} style={{ border: '1px solid #000', padding: '3px 12px', textAlign: 'center', fontWeight: 'bold' }}>Câu {i + 1}</td>
+                        ))}
+                      </tr>
+                      {['a', 'b', 'c', 'd'].map((label, k) => (
+                        <tr key={k}>
+                          <td style={{ border: '1px solid #000', padding: '3px 12px', textAlign: 'center' }}>{label}) </td>
+                          {dsQuestions.map((q, i) => {
+                            const daParts = (q.dapAn || '').split(/\s+/);
+                            const val = (daParts[k] || '').toUpperCase();
+                            const display = val === 'Đ' || val === 'D' ? 'Đ' : val === 'S' ? 'S' : val;
+                            return (
+                              <td key={i} style={{ border: '1px solid #000', padding: '3px 12px', textAlign: 'center' }}>
+                                {label}) {display}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {/* PHẦN III */}
+              {tlnQuestions.length > 0 && (
+                <div style={{ marginBottom: '16px' }}>
+                  <p style={{ fontWeight: 'bold' }}>PHẦN III</p>
+                  <p style={{ fontStyle: 'italic', marginBottom: '6px', fontSize: '12pt' }}>(Mỗi câu trả lời đúng học sinh được <b>0,5 điểm</b>)</p>
+                  <table style={{ borderCollapse: 'collapse', fontSize: '11pt' }}>
+                    <tbody>
+                      <tr>
+                        <td style={{ border: '1px solid #000', padding: '3px 12px', fontWeight: 'bold', textAlign: 'center' }}>Câu</td>
+                        {tlnQuestions.map((_, i) => (
+                          <td key={i} style={{ border: '1px solid #000', padding: '3px 20px', textAlign: 'center', fontWeight: 'bold' }}>Câu {i + 1}</td>
+                        ))}
+                      </tr>
+                      <tr>
+                        <td style={{ border: '1px solid #000', padding: '3px 12px', fontWeight: 'bold', textAlign: 'center' }}>Chọn</td>
+                        {tlnQuestions.map((q, i) => (
+                          <td key={i} style={{ border: '1px solid #000', padding: '3px 20px', textAlign: 'center' }}>{q.dapAn}</td>
+                        ))}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              <div style={{ textAlign: 'center', marginTop: '20px', borderTop: '1px solid #ccc', paddingTop: '10px' }}>
+                <p style={{ fontSize: '10pt', fontStyle: 'italic', color: '#666' }}>Thiết kế bởi Bùi Thị Kiên</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
             <div>
-              <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Th\u00f4ng tin \u0111\u1ec1 thi</p>
+              <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Thông tin đề thi</p>
               <p className="text-lg font-black text-slate-900">{tenDe}</p>
-              <p className="text-sm text-slate-500">{tenTruong} &nbsp;&middot;&nbsp; Th\u1eddi gian: <strong>{thoiGian} ph\u00fat</strong></p>
+              <p className="text-sm text-slate-500">{tenTruong} &nbsp;&middot;&nbsp; Thời gian: <strong>{thoiGian} phút</strong></p>
             </div>
             {nguonTaiLieu && (
               <a
@@ -1786,7 +2002,7 @@ function TabTaoDeTuDong({ data, countQuestions }: { data: any[], countQuestions:
                 className="flex items-center gap-2 px-4 py-2.5 bg-indigo-50 border-2 border-indigo-100 rounded-2xl text-indigo-700 font-bold text-sm hover:bg-indigo-100 transition-all flex-shrink-0"
               >
                 <BookOpen className="w-4 h-4" />
-                <span>Ngu\u1ed3n: <span className="underline">{nguonTaiLieu}</span></span>
+                <span>Nguồn: <span className="underline">{nguonTaiLieu}</span></span>
               </a>
             )}
           </div>
@@ -2312,12 +2528,12 @@ function QuestionCard({
         <div className="flex gap-1.5 flex-shrink-0">
           <button
             onClick={() => setShowDiagram(!showDiagram)}
-            title="Hi\u1ec7n / \u1ea8n h\u00ecnh minh h\u1ecda"
+            title="Hiện / Ẩn hình minh họa"
             className={`text-[10px] font-bold px-2.5 py-1 rounded-lg transition-all ${
               showDiagram ? 'bg-violet-600 text-white' : 'bg-white text-slate-400 border border-slate-200 hover:border-violet-300 hover:text-violet-600'
             }`}
           >
-            \ud83d\udcca H\u00ecnh
+            📊 Hình
           </button>
           <button
             onClick={() => setEditingId(isEditing ? null : q.id)}
@@ -2325,7 +2541,7 @@ function QuestionCard({
               isEditing ? 'bg-indigo-600 text-white' : 'bg-white text-slate-500 border border-slate-200 hover:border-indigo-300'
             }`}
           >
-            {isEditing ? '\u2713 Xong' : '\u270f\ufe0f S\u1eeda'}
+            {isEditing ? '✓ Xong' : '✏️ Sửa'}
           </button>
         </div>
       </div>
@@ -2341,7 +2557,7 @@ function QuestionCard({
           >
             <div className="bg-white/70 rounded-2xl border border-slate-200 p-3">
               <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center">
-                H\u00ecnh minh h\u1ecda m\u00f4 ph\u1ecfng \u2022 {q.noiDung}
+                Hình minh họa mô phỏng • {q.noiDung}
               </p>
               <MathDiagramSVG noiDung={q.noiDung} phan={q.phan} />
             </div>
@@ -2352,7 +2568,7 @@ function QuestionCard({
       {isEditing ? (
         <div className="space-y-3">
           <div>
-            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">N\u1ed9i dung c\u00e2u h\u1ecfi</label>
+            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Nội dung câu hỏi</label>
             <textarea
               className="w-full p-3 border-2 border-indigo-200 rounded-xl text-sm outline-none focus:border-indigo-500 transition bg-white resize-none"
               rows={5}
@@ -2361,7 +2577,7 @@ function QuestionCard({
             />
           </div>
           <div>
-            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">\u0110\u00e1p \u00e1n</label>
+            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Đáp án</label>
             <input
               className="w-full p-2.5 border-2 border-indigo-200 rounded-xl text-sm outline-none focus:border-indigo-500 transition bg-white"
               value={q.dapAn}
@@ -2374,7 +2590,7 @@ function QuestionCard({
           <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line font-medium">{q.noiDungCauHoi}</p>
           {hienThiDapAn && (
             <div className={`mt-3 p-2.5 rounded-xl ${c.bg} border ${c.border}`}>
-              <span className={`text-[10px] font-black ${c.text} uppercase tracking-wider`}>\u0110\u00e1p \u00e1n: </span>
+              <span className={`text-[10px] font-black ${c.text} uppercase tracking-wider`}>Đáp án: </span>
               <span className="text-sm font-bold text-slate-700">{q.dapAn}</span>
             </div>
           )}
@@ -2382,7 +2598,7 @@ function QuestionCard({
       )}
       {q.yeuCau && (
         <div className="mt-3 text-[10px] text-slate-400 italic border-t border-slate-200 pt-2">
-          <span className="font-bold text-slate-500">Y\u00eau c\u1ea7u c\u1ea7n \u0111\u1ea1t: </span>{q.yeuCau.split('\n')[0]}
+          <span className="font-bold text-slate-500">Yêu cầu cần đạt: </span>{q.yeuCau.split('\n')[0]}
         </div>
       )}
     </motion.div>
