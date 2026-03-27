@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -1414,77 +1414,151 @@ function TabTaoDeTuDong({ data, countQuestions }: { data: any[], countQuestions:
   };
 
   const exportExamToWord = () => {
-    const phanI = nlcQuestions.map((q, i) => `
-      <tr>
-        <td style="border:1px solid #ccc;padding:8px;width:30px;text-align:center;font-weight:bold">${i + 1}</td>
-        <td style="border:1px solid #ccc;padding:8px;">${q.noiDungCauHoi.replace(/\n/g, '<br/>')}</td>
-        <td style="border:1px solid #ccc;padding:8px;text-align:center;">${q.mucDo}</td>
-        <td style="border:1px solid #ccc;padding:8px;text-align:center;">${q.dapAn}</td>
-      </tr>`).join('');
+    // Parse NLC questions into stem + options
+    const parseNLC = (q: CauHoi) => {
+      const raw = q.noiDungCauHoi.replace(/^\[.*?\]\s*–?\s*/, '').trim();
+      const parts = raw.split(/\n?[A-D]\.\s*/);
+      const stem = parts[0].trim();
+      const opts = [...raw.matchAll(/([A-D])\.\s*([^\n]*)/g)];
+      const options = opts.length > 0
+        ? opts.map(m => ({ l: m[1], t: m[2].trim() }))
+        : ['A','B','C','D'].map((l,k) => ({ l, t: parts[k+1]?.trim() || '' }));
+      return { stem, options };
+    };
 
-    const phanII = dsQuestions.map((q, i) => `
-      <tr>
-        <td style="border:1px solid #ccc;padding:8px;width:30px;text-align:center;font-weight:bold">${i + 1}</td>
-        <td style="border:1px solid #ccc;padding:8px;">${q.noiDungCauHoi.replace(/\n/g, '<br/>')}</td>
-        <td style="border:1px solid #ccc;padding:8px;text-align:center;">${q.mucDo}</td>
-        <td style="border:1px solid #ccc;padding:8px;text-align:center;">${q.dapAn}</td>
-      </tr>`).join('');
+    // Parse DS questions into stem + sub-items
+    const parseDS = (q: CauHoi) => {
+      const raw = q.noiDungCauHoi;
+      const parts = raw.split(/\n(?=[a-d]\))/i);
+      const stem = parts[0].replace(/^\[.*?\]\s*–?\s*/, '').trim();
+      const items = ['a','b','c','d'].map((_, k) => {
+        if (parts[k+1]) return parts[k+1].replace(/^[a-d]\)\s*/i, '').trim();
+        return '';
+      });
+      return { stem, items };
+    };
 
-    const phanIII = tlnQuestions.map((q, i) => `
-      <tr>
-        <td style="border:1px solid #ccc;padding:8px;width:30px;text-align:center;font-weight:bold">${i + 1}</td>
-        <td style="border:1px solid #ccc;padding:8px;">${q.noiDungCauHoi.replace(/\n/g, '<br/>')}</td>
-        <td style="border:1px solid #ccc;padding:8px;text-align:center;">${q.mucDo}</td>
-        <td style="border:1px solid #ccc;padding:8px;text-align:center;">${q.dapAn}</td>
-      </tr>`).join('');
+    // Build NLC HTML
+    const nlcHTML = nlcQuestions.map((q, i) => {
+      const { stem, options } = parseNLC(q);
+      return `
+        <p style="margin:6pt 0 2pt"><b>Câu ${i+1}.</b> ${stem}</p>
+        <table style="border:none;width:100%;margin-left:24pt"><tr>
+          <td style="border:none;width:50%;padding:2pt"><b>A.</b> ${options[0]?.t||''}</td>
+          <td style="border:none;width:50%;padding:2pt"><b>B.</b> ${options[1]?.t||''}</td>
+        </tr><tr>
+          <td style="border:none;width:50%;padding:2pt"><b>C.</b> ${options[2]?.t||''}</td>
+          <td style="border:none;width:50%;padding:2pt"><b>D.</b> ${options[3]?.t||''}</td>
+        </tr></table>`;
+    }).join('');
 
-    const html = `
-      <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+    // Build DS HTML
+    const dsHTML = dsQuestions.map((q, i) => {
+      const { stem, items } = parseDS(q);
+      return `
+        <p style="margin:6pt 0 2pt"><b>Câu ${i+1}:</b> ${stem}</p>
+        <div style="margin-left:24pt">
+          ${items.map((it, k) => `<p style="margin:2pt 0">${['a','b','c','d'][k]}) ${it}</p>`).join('')}
+        </div>`;
+    }).join('');
+
+    // Build TLN HTML
+    const tlnHTML = tlnQuestions.map((q, i) => {
+      const clean = q.noiDungCauHoi.replace(/^\[.*?\]\s*–?\s*/, '').trim();
+      return `<p style="margin:6pt 0 2pt"><b>Câu ${i+1}:</b></p><p style="margin-left:24pt">${clean}</p>`;
+    }).join('');
+
+    // Answer key - Phần I table
+    const dapAnI = `<table style="border-collapse:collapse;margin:6pt 0">
+      <tr>${nlcQuestions.map((_,i) => `<td style="border:1px solid #000;padding:3pt 6pt;text-align:center;font-weight:bold;font-size:9pt">Câu ${i+1}</td>`).join('')}</tr>
+      <tr>${nlcQuestions.map(q => `<td style="border:1px solid #000;padding:3pt 6pt;text-align:center;font-weight:bold">${q.dapAn}</td>`).join('')}</tr>
+    </table>`;
+
+    // Answer key - Phần II table  
+    const dapAnII = `<table style="border-collapse:collapse;margin:6pt 0">
+      <tr><td style="border:1px solid #000;padding:3pt 10pt;font-weight:bold"></td>${dsQuestions.map((_,i) => `<td style="border:1px solid #000;padding:3pt 10pt;text-align:center;font-weight:bold">Câu ${i+1}</td>`).join('')}</tr>
+      ${['a','b','c','d'].map((label, k) => `<tr><td style="border:1px solid #000;padding:3pt 10pt;text-align:center">${label})</td>${dsQuestions.map(q => {
+        const parts = (q.dapAn||'').split(/\s+/);
+        const v = (parts[k]||'').toUpperCase();
+        const d = v==='Đ'||v==='D'?'Đ':v==='S'?'S':v;
+        return `<td style="border:1px solid #000;padding:3pt 10pt;text-align:center">${label}) ${d}</td>`;
+      }).join('')}</tr>`).join('')}
+    </table>`;
+
+    // Answer key - Phần III table
+    const dapAnIII = `<table style="border-collapse:collapse;margin:6pt 0">
+      <tr>${tlnQuestions.map((_,i) => `<td style="border:1px solid #000;padding:3pt 14pt;text-align:center;font-weight:bold;font-size:9pt">Câu ${i+1}</td>`).join('')}</tr>
+      <tr>${tlnQuestions.map(q => `<td style="border:1px solid #000;padding:3pt 14pt;text-align:center">${q.dapAn}</td>`).join('')}</tr>
+    </table>`;
+
+    const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
       <head><meta charset='utf-8'><title>${tenDe}</title>
       <style>
-        body { font-family: "Times New Roman", Times, serif; font-size: 12pt; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid black; padding: 6px; vertical-align: top; }
-        th { background: #f0f0f0; font-weight: bold; text-align: center; }
-        h1,h2,h3 { text-align: center; }
-        .section-title { background: #1e293b; color: white; padding: 8px; font-weight: bold; margin: 20px 0 10px; }
-      </style>
-      </head>
+        @page { size: A4; margin: 2cm 2cm 2cm 2cm; }
+        body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.5; }
+      </style></head>
       <body>
-        <p style="text-align:center;font-weight:bold">${tenTruong}</p>
-        <h2>${tenDe}</h2>
-        <p style="text-align:center">Thời gian làm bài: ${thoiGian} phút (không kể thời gian phát đề)</p>
-        <p style="text-align:right;font-style:italic;font-size:10pt;color:#555">📚 Nguồn tài liệu: ${nguonTaiLieu}</p>
-        <hr/>
+        <!-- HEADER -->
+        <table style="border:none;width:100%;margin-bottom:4pt"><tr>
+          <td style="border:none;width:50%;text-align:center;font-size:12pt">
+            <i>${soGDDT}</i><br/><b><u>${tenTruong}</u></b>
+          </td>
+          <td style="border:none;width:50%;text-align:center;font-size:12pt">
+            <b>${tenKyThi}</b><br/><b>NĂM HỌC ${namHoc}</b>
+          </td>
+        </tr></table>
+        <p style="text-align:center;font-weight:bold;font-size:12pt;margin:2pt 0">MÔN TOÁN - Lớp 12</p>
+        <table style="border:none;width:100%"><tr>
+          <td style="border:none;font-style:italic;font-size:11pt">(Đề thi có ${Math.ceil((nlcQuestions.length + dsQuestions.length + tlnQuestions.length) / 8)} trang)</td>
+          <td style="border:none;text-align:right;font-size:11pt">Thời gian làm bài: ${thoiGian} phút<br/><i>(không kể thời gian phát đề)</i></td>
+        </tr></table>
+        <p style="text-align:center;margin:12pt 0">
+          <span style="border:2px solid #000;padding:4pt 20pt;font-weight:bold;font-size:14pt">Mã đề ${maDe}</span>
+        </p>
+        <p style="margin-bottom:16pt">Họ và tên học sinh: .......................................................... Số báo danh: .......................</p>
 
-        <div class="section-title">PHẦN I. TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN (${nlcQuestions.length} câu)</div>
-        <p><em>Mỗi câu trả lời đúng được 0,25 điểm. Thí sinh chỉ chọn một phương án.</em></p>
-        <table>
-          <tr><th>STT</th><th>Nội dung câu hỏi</th><th>Mức độ</th><th>Đáp án</th></tr>
-          ${phanI}
-        </table>
+        <!-- PHẦN I -->
+        <p><b>PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.</b> <i>Thí sinh trả lời từ câu 1 đến câu ${nlcQuestions.length}. Mỗi câu hỏi thí sinh chỉ chọn một phương án.</i></p>
+        ${nlcHTML}
 
-        <div class="section-title">PHẦN II. TRẮC NGHIỆM ĐÚNG / SAI (${dsQuestions.length} câu)</div>
-        <p><em>Mỗi câu có 4 mệnh đề. Thí sinh xác định đúng (Đ) / sai (S) cho mỗi mệnh đề.</em></p>
-        <table>
-          <tr><th>STT</th><th>Nội dung câu hỏi</th><th>Mức độ</th><th>Đáp án</th></tr>
-          ${phanII}
-        </table>
+        <!-- PHẦN II -->
+        <p style="margin-top:14pt"><b>PHẦN II. Câu trắc nghiệm đúng sai.</b> <i>(Thí sinh trả lời từ câu 1 đến câu ${dsQuestions.length}. Trong mỗi ý a), b), c), d) ở mỗi câu, thí sinh chọn đúng hoặc sai.)</i></p>
+        ${dsHTML}
 
-        <div class="section-title">PHẦN III. TRẢ LỜI NGẮN (${tlnQuestions.length} câu)</div>
-        <p><em>Thí sinh điền đáp số vào ô trả lời.</em></p>
-        <table>
-          <tr><th>STT</th><th>Nội dung câu hỏi</th><th>Mức độ</th><th>Đáp án</th></tr>
-          ${phanIII}
-        </table>
-      </body>
-      </html>
-    `;
+        <!-- PHẦN III -->
+        <p style="margin-top:14pt"><b>PHẦN III. Câu hỏi trắc nghiệm trả lời ngắn.</b> <i>Thí sinh trả lời từ câu 1 đến câu ${tlnQuestions.length}</i></p>
+        ${tlnHTML}
+
+        <!-- HẾT -->
+        <p style="text-align:center;margin:30pt 0;font-size:13pt">--------------------<b>HẾT</b>--------------------</p>
+
+        <!-- ĐÁP ÁN -->
+        <p style="text-align:center;font-weight:bold;font-size:14pt;border-top:2pt solid #000;padding-top:12pt">ĐÁP ÁN VÀ THANG ĐIỂM CHẤM</p>
+        
+        <p style="font-weight:bold">PHẦN I</p>
+        <p><i>(Mỗi câu trả lời đúng học sinh được <b>0,25 điểm</b>)</i></p>
+        ${dapAnI}
+
+        <p style="font-weight:bold;margin-top:12pt">PHẦN II</p>
+        <p>Điểm tối đa của 01 câu hỏi là <b>1 điểm</b>.</p>
+        <p>- Thí sinh chỉ lựa chọn chính xác 01 ý trong 1 câu hỏi được <b>0,1 điểm</b>.</p>
+        <p>- Thí sinh chỉ lựa chọn chính xác 02 ý trong 1 câu hỏi được <b>0,25 điểm</b>.</p>
+        <p>- Thí sinh chỉ lựa chọn chính xác 03 ý trong 1 câu hỏi được <b>0,5 điểm</b>.</p>
+        <p>- Thí sinh chỉ lựa chọn chính xác 04 ý trong 1 câu hỏi được <b>1 điểm</b>.</p>
+        ${dapAnII}
+
+        <p style="font-weight:bold;margin-top:12pt">PHẦN III</p>
+        <p><i>(Mỗi câu trả lời đúng học sinh được <b>0,5 điểm</b>)</i></p>
+        ${dapAnIII}
+
+        <p style="text-align:center;margin-top:16pt;font-style:italic;color:#666;font-size:10pt">Thiết kế bởi Bùi Thị Kiên</p>
+      </body></html>`;
+
     const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'De_Thi_Tu_Dong.doc';
+    link.download = `De_Thi_Ma_${maDe}.doc`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

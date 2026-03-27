@@ -220,5 +220,51 @@ export const QUESTION_BANK: Record<string, QBankEntry[]> = {
     { mucDo:'VDC', phan:'tln', noiDung:'Gửi 100 triệu, lãi suất $8\\%$/năm kép. Sau 5 năm có bao nhiêu?', dapAn:'$100\\times(1{,}08)^5 \\approx 146{,}93$ triệu' },
     { mucDo:'VDC', phan:'tln', noiDung:'Tổng vô hạn CSN: $u_1=6$, $q=\\dfrac{1}{3}$.', dapAn:'$S=9$' },
     { mucDo:'NB', phan:'ds', noiDung:'Cho CSC $u_1=2$, $d=3$. Xác định Đúng/Sai:\na) $u_5=14$.\nb) $S_4=26$.\nc) $S_{10}=155$.\nd) $u_n=3n-1$.', dapAn:'Đ Đ Đ Đ' },
+    { mucDo:'TH', phan:'ds', noiDung:'Cho CSN $(u_n)$ có $u_1=3$, $q=2$. Xác định Đúng/Sai:\na) $u_4=24$.\nb) $S_3=21$.\nc) $u_1+u_2+u_3+u_4=45$.\nd) CSN trên là CSN tăng.', dapAn:'Đ Đ Đ Đ' },
+    { mucDo:'VD', phan:'ds', noiDung:'Cho CSC $(u_n)$ với $u_3=7$, $u_7=19$. Xác định Đúng/Sai:\na) Công sai $d=3$.\nb) $u_1=1$.\nc) $u_{10}=28$.\nd) $S_{10}=145$.', dapAn:'Đ Đ Đ Đ' },
+  ],
+
+  /* ── NGÂN HÀNG CÂU HỎI CHUẨN FORM 2025 (Tham khảo phong cách Thầy Nguyễn Bảo Vương) ── */
+  'tổng hợp': [
+    // ═══ NLC - TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN ═══
+    { mucDo:'NB', phan:'nlc', noiDung:'Hàm số $y = x^3 - 3x^2 + 2$ có bao nhiêu điểm cực trị?\nA. $2$\nB. $1$\nC. $3$\nD. $0$', dapAn:'A' },
+    { mucDo:'NB', phan:'nlc', noiDung:'Nguyên hàm của $f(x) = 4x^3$ là:\nA. $x^4 + C$\nB. $12x^2 + C$\nC. $4x^4 + C$\nD. $\\dfrac{x^4}{4} + C$', dapAn:'A' },
+    { mucDo:'NB', phan:'nlc', noiDung:'Đồ thị hàm số $y = \\dfrac{x-1}{x+2}$ có tiệm cận ngang là:\nA. $y = 1$\nB. $y = -2$\nC. $y = 0$\nD. $y = -1$', dapAn:'A' },
+    { mucDo:'NB', phan:'nlc', noiDung:'Số phức $z = 2 - 3i$ có phần ảo bằng:\nA. $-3$\nB. $3$\nC. $-3i$\nD. $2$', dapAn:'A' },
+    { mucDo:'TH', phan:'nlc', noiDung:'Số phức $z = (1+i)^2$ có phần thực và phần ảo lần lượt là:\nA. $0$ và $2$\nB. $2$ và $0$\nC. $1$ và $1$\nD. $-1$ và $2$', dapAn:'A' },
+    { mucDo:'TH', phan:'nlc', noiDung:'Tiệm cận đứng của đồ thị hàm số $y = \\dfrac{x+1}{x-2}$ là:\nA. $x = 2$\nB. $x = -1$\nC. $y = 1$\nD. $x = 0$', dapAn:'A' },
+    { mucDo:'TH', phan:'nlc', noiDung:'$\\displaystyle\\int_0^2 (2x + 1)\\,dx$ bằng:\nA. $6$\nB. $4$\nC. $5$\nD. $8$', dapAn:'A' },
+    { mucDo:'VD', phan:'nlc', noiDung:'Giá trị lớn nhất của hàm số $y = x^3 - 3x$ trên $[-2; 2]$ bằng:\nA. $2$\nB. $4$\nC. $-2$\nD. $0$', dapAn:'A' },
+    { mucDo:'VD', phan:'nlc', noiDung:'Cho $z = 1 + 2i$, $w = 3 - i$. Mô-đun $|z \\cdot w|$ bằng:\nA. $5\\sqrt{2}$\nB. $\\sqrt{50}$\nC. $5$\nD. $10$', dapAn:'A' },
+
+    // ═══ DS - ĐÚNG/SAI CHUẨN FORM 2025 ═══
+    { mucDo:'NB', phan:'ds', noiDung:'Cho hàm số $y = x^4 - 2x^2 + 1$. Xét các phát biểu sau:\na) Hàm số có đạo hàm $y\' = 4x^3 - 4x$.\nb) Phương trình $y\' = 0$ có $3$ nghiệm phân biệt.\nc) Hàm số đạt cực tiểu tại $x = 0$.\nd) Đồ thị hàm số nhận trục $Oy$ làm trục đối xứng.', dapAn:'Đ Đ S Đ' },
+    { mucDo:'TH', phan:'ds', noiDung:'Cho hàm số $y = \\dfrac{2x + 1}{x - 1}$. Xét các phát biểu sau:\na) Tập xác định $D = \\mathbb{R} \\setminus \\{1\\}$.\nb) Đồ thị có tiệm cận ngang $y = 2$.\nc) Đồ thị có tiệm cận đứng $x = -1$.\nd) Hàm số nghịch biến trên mỗi khoảng xác định.', dapAn:'Đ Đ S Đ' },
+    { mucDo:'TH', phan:'ds', noiDung:'Cho hàm số $f(x) = x^3 - 3x + 2$. Xét các phát biểu sau:\na) $f\'(x) = 3x^2 - 3$.\nb) $f\'(1) = 0$.\nc) Hàm số đồng biến trên khoảng $(-1; 1)$.\nd) Giá trị cực đại của hàm số bằng $4$.', dapAn:'Đ Đ S Đ' },
+    { mucDo:'VD', phan:'ds', noiDung:'Cho $\\displaystyle\\int_0^2 f(x)\\,dx = 5$ và $\\displaystyle\\int_0^2 g(x)\\,dx = 3$. Xét các phát biểu:\na) $\\displaystyle\\int_0^2 [f(x) + g(x)]\\,dx = 8$.\nb) $\\displaystyle\\int_0^2 3f(x)\\,dx = 15$.\nc) $\\displaystyle\\int_2^0 f(x)\\,dx = 5$.\nd) $\\displaystyle\\int_0^2 f(x) \\cdot g(x)\\,dx = 15$.', dapAn:'Đ Đ S S' },
+    { mucDo:'VD', phan:'ds', noiDung:'Cho số phức $z = 3 - 4i$. Xét các phát biểu sau:\na) Mô-đun $|z| = 5$.\nb) Số phức liên hợp $\\bar{z} = 3 + 4i$.\nc) $z + \\bar{z} = 6$.\nd) $z \\cdot \\bar{z} = 7$.', dapAn:'Đ Đ Đ S' },
+    { mucDo:'TH', phan:'ds', noiDung:'Trong không gian $Oxyz$, cho mp $(P): 2x - y + 2z - 6 = 0$. Xét các phát biểu:\na) Véc-tơ pháp tuyến của $(P)$ là $\\vec{n} = (2; -1; 2)$.\nb) Khoảng cách từ $O$ đến $(P)$ bằng $2$.\nc) Điểm $A(3; 0; 0)$ thuộc $(P)$.\nd) $(P)$ song song với mp $4x - 2y + 4z = 6$.', dapAn:'Đ Đ Đ S' },
+    { mucDo:'VDC', phan:'ds', noiDung:'Cho hàm số $y = x^3 - 3mx + 2$ với $m$ là tham số. Xét các phát biểu:\na) Khi $m = 1$, hàm số có cực đại và cực tiểu.\nb) Khi $m \\leq 0$, hàm số không có cực trị.\nc) Hàm số luôn đi qua điểm $(0; 2)$ với mọi $m$.\nd) Khi $m = 3$, giá trị cực đại bằng $8$.', dapAn:'Đ Đ Đ Đ' },
+    { mucDo:'VD', phan:'ds', noiDung:'Cho hàm số $y = x^3 - 6x^2 + 9x + 1$. Xét các phát biểu sau:\na) $y\'(x) = 3x^2 - 12x + 9$.\nb) Hàm số đạt cực đại tại $x = 1$.\nc) Giá trị cực tiểu bằng $1$.\nd) Hàm số đồng biến trên $(3; +\\infty)$.', dapAn:'Đ Đ Đ Đ' },
+    { mucDo:'TH', phan:'ds', noiDung:'Cho cấp số cộng $(u_n)$ với $u_1 = 5$, $d = -2$. Xét các phát biểu:\na) $u_3 = 1$.\nb) $u_5 = -3$.\nc) $S_5 = 5$.\nd) Dãy $(u_n)$ là dãy giảm.', dapAn:'Đ Đ Đ Đ' },
+    { mucDo:'VDC', phan:'ds', noiDung:'Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh $a$, $SA \\perp (ABCD)$, $SA = a$. Xét các phát biểu:\na) $V_{S.ABCD} = \\dfrac{a^3}{3}$.\nb) $SC = a\\sqrt{3}$.\nc) Góc giữa $SC$ và $(ABCD)$ bằng $45^\\circ$.\nd) Khoảng cách từ $A$ đến $(SBC)$ bằng $\\dfrac{a\\sqrt{2}}{2}$.', dapAn:'Đ Đ Đ Đ' },
+
+    // ═══ TLN - TRẢ LỜI NGẮN CHUẨN FORM 2025 ═══
+    { mucDo:'TH', phan:'tln', noiDung:'Tìm giá trị cực đại của hàm số $y = -x^2 + 4x - 3$.', dapAn:'$1$' },
+    { mucDo:'TH', phan:'tln', noiDung:'Tính $\\displaystyle\\int_0^1 (3x^2 + 2x)\\,dx$.', dapAn:'$2$' },
+    { mucDo:'TH', phan:'tln', noiDung:'Tìm mô-đun của số phức $z = 3 + 4i$.', dapAn:'$5$' },
+    { mucDo:'TH', phan:'tln', noiDung:'Tính đạo hàm của hàm số $y = x^3 - 6x^2 + 9x$ tại $x = 1$.', dapAn:'$0$' },
+    { mucDo:'TH', phan:'tln', noiDung:'Tiệm cận ngang của đồ thị hàm số $y = \\dfrac{3x - 1}{x + 2}$ có phương trình $y = ?$', dapAn:'$3$' },
+    { mucDo:'TH', phan:'tln', noiDung:'Số nghiệm của phương trình $x^3 - 3x + 2 = 0$ là bao nhiêu?', dapAn:'$2$' },
+    { mucDo:'VD', phan:'tln', noiDung:'Tính diện tích hình phẳng giới hạn bởi $y = x^2$ và $y = 4$.', dapAn:'$\\dfrac{32}{3}$' },
+    { mucDo:'VD', phan:'tln', noiDung:'Cho $z = 1 + 2i$. Tính $|z^2|$.', dapAn:'$5$' },
+    { mucDo:'VD', phan:'tln', noiDung:'Tính khoảng cách từ $M(1; 2; 3)$ đến mp $(P): 2x - 2y + z - 3 = 0$.', dapAn:'$\\dfrac{2}{3}$' },
+    { mucDo:'VD', phan:'tln', noiDung:'Tìm $m$ để hàm số $y = x^3 - 3x + m$ đạt cực đại bằng $5$.', dapAn:'$m = 3$' },
+    { mucDo:'VDC', phan:'tln', noiDung:'Cho hình chóp $S.ABC$ có $SA \\perp (ABC)$, $SA = 3$, tam giác $ABC$ vuông tại $B$, $AB = 3$, $BC = 4$. Tính thể tích khối chóp.', dapAn:'$6$' },
+    { mucDo:'VDC', phan:'tln', noiDung:'Tính thể tích khối tròn xoay tạo thành khi quay hình phẳng giới hạn bởi $y = \\sqrt{x}$, $y = 0$, $x = 4$ quanh $Ox$.', dapAn:'$8\\pi$' },
+    { mucDo:'VDC', phan:'tln', noiDung:'Tìm tất cả giá trị $m$ để $y = x^3 - 3x^2 + m$ có hai điểm cực trị nằm khác phía trục $Ox$.', dapAn:'$0 < m < 4$' },
+    { mucDo:'VDC', phan:'tln', noiDung:'Gửi tiết kiệm $200$ triệu, lãi suất $7\\%$/năm (lãi kép). Sau $5$ năm số tiền thu được (triệu đồng, làm tròn hàng đơn vị) là bao nhiêu?', dapAn:'$281$' },
   ],
 };
+
+
